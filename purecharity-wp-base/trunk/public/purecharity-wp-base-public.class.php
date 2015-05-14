@@ -18,7 +18,7 @@
  *
  * @package    Purecharity_Wp_Base
  * @subpackage Purecharity_Wp_Base/public
- * @author     Rafael Dalprá <rafael.dalpra@toptal.com>
+ * @author     Pure Charity <dev@purecharity.com>
  */
 class Purecharity_Wp_Base_Public {
 
@@ -80,7 +80,7 @@ class Purecharity_Wp_Base_Public {
 	public static function powered_by(){
 		return '
 			<div class="poweredby">
-          		<a href="https://purecharity.com/how-it-works/individuals/giving-circles/"><img align="center" src="' . plugins_url( '/img/purecharity-hope.png' , __FILE__ ) . '" ></a>
+          		<a href="https://purecharity.com/how-it-works/#nonprofits/"><img align="center" src="' . plugins_url( '/img/purecharity-hope.png' , __FILE__ ) . '" ></a>
       		</div>
 		';
 	}
@@ -90,18 +90,23 @@ class Purecharity_Wp_Base_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function sharing_links($which = array(), $text = ''){
+	public static function sharing_links($which = array(), $text = '', $title = '', $image = ''){
 		$current_url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+
+		$facebook_url = 'https://www.facebook.com/sharer.php?p[url]='.self::current_page_url();
+		if($title != ''){ $facebook_url .= '&p[title]='.$title; }
+		if($text != ''){ $facebook_url .= '&p[summary]='.$text; }
+		if($image != ''){ $facebook_url .= '&p[image]='.$image; }
 
 		$widgets = array(); 
 		$widgets['facebook'] = '
-			<a style="float:right" href="https://www.facebook.com/sharer/sharer.php?u='.self::current_page_url().'">
+			<a href="'.$facebook_url.'">
 				<img src="'.plugins_url( '/img/facebook.png' , __FILE__ ).'" />
 			</a>
 		';
 
 		$widgets['twitter'] = '
-			<a style="float:right;" href="https://twitter.com/home?status='.$text.' '.self::current_page_url().'">
+			<a href="https://twitter.com/home?status='.$title.' '.self::current_page_url().'">
 				<img src="'.plugins_url( '/img/twitter.png' , __FILE__ ).'" />
 			</a>
 		';
@@ -122,7 +127,7 @@ class Purecharity_Wp_Base_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function current_page_url($cut_params) {
+	public static function current_page_url($cut_params = false) {
 		$pageURL = 'http';
 		if( isset($_SERVER["HTTPS"]) ) {
 			if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -140,4 +145,34 @@ class Purecharity_Wp_Base_Public {
 		}
 	}
 
+	/**
+	 * Iframe for external actions.
+	 *
+	 * @since    1.0.1
+	 */
+	public static function iframe_actions(){
+		return '
+			<div class="pc-backdrop">
+				<a href="#" class="pc-iframe-close"><b>x</b> close</a>
+				<div class="pc-iframe-donate">
+					<iframe id="pc-iframe" src=""></iframe>
+				</div>
+			</div>
+		';
+	}
+
+	/**
+	 * Not found layout for single display.
+	 *
+	 * @since    1.0.1
+	 */
+	public static function pc_url(){
+		$pure_base_options = get_option( 'pure_base_settings' );
+		$mode = $pure_base_options['mode'];
+		if($mode == 'production'){
+			return 'http://purecharity.com';
+		}else{
+			return 'http://staging.purecharity.com';
+		}
+	}
 }

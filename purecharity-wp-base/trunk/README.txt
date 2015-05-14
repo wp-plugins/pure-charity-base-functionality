@@ -43,6 +43,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.0.1 =
+* Added the possibility to open links inside an iframe.
+
 = 1.0 =
 * Pure Base Plugin established.
 

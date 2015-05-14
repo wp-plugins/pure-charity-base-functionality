@@ -4,7 +4,9 @@ window.setTimeout(function(){
 		var main_color = $("#main_color").val();
 		$("#main_color").spectrum({
 			preferredFormat: "hex",
-		  color: main_color
+		  color: main_color,
+		  showInitial: true,
+    	showInput: true
 		});
   });
 }, 1000)

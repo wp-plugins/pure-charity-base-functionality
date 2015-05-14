@@ -1,32 +1,29 @@
-(function( $ ) {
+(function( jQuery ) {
 	'use strict';
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note that this assume you're going to use jQuery, so it prepares
-	 * the $ function reference to be used within the scope of this
-	 * function.
-	 *
-	 * From here, you're able to define handlers for when the DOM is
-	 * ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * Or when the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and so on.
-	 *
-	 * Remember that ideally, we should not attach any more than a single DOM-ready or window-load handler
-	 * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
-	 * be doing this, we should try to minimize doing that in our own work.
-	 */
+  // Iframe specifics: Buttons
+  jQuery(document).on('click', '.iframe-button', function(){
+    if(jQuery(window).outerWidth() > 700){
+      jQuery('.pc-backdrop').show();
+      jQuery('.pc-backdrop').find('iframe').html('');
+      jQuery('.pc-backdrop').find('iframe').attr('src', jQuery(this).attr('href'));
+      return false;
+    }
+  })
+
+  // Forms
+  jQuery(document).on('submit', '.iframe-form', function(){
+    if(jQuery(window).outerWidth() > 700){
+      jQuery('.pc-backdrop').find('iframe').html('');
+      jQuery('.pc-backdrop').find('iframe').attr('src', jQuery(this).attr('action')+'?'+jQuery(this).serialize());
+      jQuery('.pc-backdrop').show();
+      return false;
+    }
+  })
+
+  jQuery(document).on('click', '.pc-backdrop', function(){
+    jQuery(this).hide();
+  })
+  // Iframe specifics
 
 })( jQuery );

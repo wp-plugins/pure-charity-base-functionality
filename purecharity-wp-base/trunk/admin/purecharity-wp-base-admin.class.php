@@ -18,7 +18,7 @@
  *
  * @package    Purecharity_Wp_Base
  * @subpackage Purecharity_Wp_Base/admin
- * @author     Rafael Dalprá <rafael.dalpra@toptal.com>
+ * @author     Pure Charity <dev@purecharity.com>
  */
 class Purecharity_Wp_Base_Admin {
 

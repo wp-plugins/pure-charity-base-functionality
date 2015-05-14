@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Purecharity_Wp_Base
  * @subpackage Purecharity_Wp_Base/includes
- * @author     Rafael Dalprá <rafael.dalpra@toptal.com>
+ * @author     Pure Charity <dev@purecharity.com>
  */
 class Purecharity_Wp_Base {
 
@@ -247,9 +247,9 @@ class Purecharity_Wp_Base {
 		self::$api_key = $pure_base_options['api_key'];
 
 		if ('production' == $mode) {
-	      	self::$api_url = "https://purecharity.com/api/";
+	      	self::$api_url = "http://purecharity.com/api/";
 	    } else {
-	      	self::$api_url = "https://staging.purecharity.com/api/";
+	      	self::$api_url = "http://staging.purecharity.com/api/";
 			// For local testing:
 			// self::$api_url = "http://purecharity.ngrok.com/api/";
 	    }

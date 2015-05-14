@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    Purecharity_Wp_Base
  * @subpackage Purecharity_Wp_Base/includes
- * @author     Rafael Dalprá <rafael.dalpra@toptal.com>
+ * @author     Pure Charity <dev@purecharity.com>
  */
 class Purecharity_Wp_Base_Activator {
 
